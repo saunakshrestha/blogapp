@@ -20,6 +20,7 @@ def blogs_category(request,category):
     }
     return render(request,'blogs/category.html',context)
 
+#get specific post with comments
 def blogs_detail(request,pk):
     post = Post.object.get(pk=pk)
     comments = Comment.object.filter(post = post)
