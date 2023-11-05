@@ -13,17 +13,17 @@ def blogs_index(request):
 def blogs_category(request,category):
     posts = Post.objects.filter(
         category_choose__category_text__contains = category
-    ).order_by("-created_on")]
+    ).order_by("-created_on")
     context = {
-        "category" : "category",
+        "category" : category,
         "posts" : posts,
     }
     return render(request,'blogs/category.html',context)
 
 #get specific post with comments
 def blogs_detail(request,pk):
-    post = Post.object.get(pk=pk)
-    comments = Comment.object.filter(post = post)
+    post = Post.objects.get(pk=pk)
+    comments = Comment.objects.filter(post = post)
     context = {
         "post" :post,
         "comments":comments,

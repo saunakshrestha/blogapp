@@ -1,0 +1,18 @@
+{% block page_title %}
+    <h2>{{ post.title }}</h2>
+{% endblock page_title %}
+{% block page_content %}
+    <h4>{{post.created_on}} | Categories: </h4>
+    {% for category in post.category_choose.all %}
+        <h3><a href="{% url 'blogs_category' category.category_text %}">{{category.category_text}}</a></h3>
+    {% endfor %}
+    <p>{{post.body}} </p>
+   
+{% endblock page_content %}
+    
+{% block comment_section %}
+    {% for comment in post.comments.all %}
+        <h3><a href="{% url 'blogs_detail' comment.author %}">{{comment.author}}</a></h3>
+    {% endfor %}
+   
+{% endblock  %}
