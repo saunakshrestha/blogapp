@@ -6,13 +6,22 @@
     {% for category in post.category_choose.all %}
         <h3><a href="{% url 'blogs_category' category.category_text %}">{{category.category_text}}</a></h3>
     {% endfor %}
-    <p>{{post.body}} </p>
+    <p>{{post.body}} <br><br></p>
    
 {% endblock page_content %}
     
 {% block comment_section %}
-    {% for comment in post.comments.all %}
-        <h3><a href="{% url 'blogs_detail' comment.author %}">{{comment.author}}</a></h3>
-    {% endfor %}
+    <h2> Leave a Comment</h2>
+    <form method="POST" >
+        {% csrf_token %}
+        <div>{{Form.author}}</div>
+        <div>{{Form.body}}</div>
+        <button type="submit">Submit</button>
+    </form>
+    <h3>Comments</h3>
+    {% for comment in comments %}
+        <h3>{{comment.author}}</h3>
+        <h4>{{comment.body}}</h4>
+    {% endfor %}    
    
 {% endblock  %}
